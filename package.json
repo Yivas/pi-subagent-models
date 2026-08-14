@@ -1,0 +1,54 @@
+{
+  "name": "pi-subagent-models",
+  "version": "0.1.0",
+  "description": "Pi extension to set global or per-session models and thinking levels for subagents.",
+  "type": "module",
+  "exports": "./src/index.ts",
+  "files": [
+    "src",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "check": "node --experimental-strip-types --check src/index.ts && node --experimental-strip-types --check src/state.ts",
+    "test": "npm run check && node --experimental-strip-types --test test.ts"
+  },
+  "keywords": [
+    "pi-package",
+    "pi",
+    "subagents",
+    "models",
+    "reasoning",
+    "session"
+  ],
+  "author": "Yivas",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Yivas/pi-subagent-models.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Yivas/pi-subagent-models/issues"
+  },
+  "homepage": "https://github.com/Yivas/pi-subagent-models#readme",
+  "publishConfig": {
+    "access": "public"
+  },
+  "peerDependencies": {
+    "@earendil-works/pi-coding-agent": "0.84.1",
+    "pi-subagents": "0.40.0"
+  },
+  "peerDependenciesMeta": {
+    "@earendil-works/pi-coding-agent": {
+      "optional": true
+    },
+    "pi-subagents": {
+      "optional": true
+    }
+  },
+  "pi": {
+    "extensions": [
+      "./src/index.ts"
+    ]
+  }
+}
