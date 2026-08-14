@@ -2,6 +2,13 @@
 
 Set one model and thinking level for every `pi-subagents` child, globally or for one Pi session. The parent session keeps its current model.
 
+## Package
+
+- npm: [`pi-subagent-models`](https://www.npmjs.com/package/pi-subagent-models)
+- Source: [`Yivas/pi-subagent-models`](https://github.com/Yivas/pi-subagent-models)
+
+Current release: `0.1.0`.
+
 ## Requirements
 
 - Pi `0.84.1`.
