@@ -13,10 +13,10 @@ description: Install pi-subagent-models and verify that Pi loads it before pi-su
 
 ## Install the package
 
-npm publication is pending registry 2FA. Until `0.2.0` appears on npm, install the verified Git tag:
+Install the published npm package:
 
 ```text
-pi install git:github.com/Yivas/pi-subagent-models@v0.2.0
+pi install npm:pi-subagent-models@0.2.0
 ```
 
 The package must load before `pi-subagents`. Keep all other package entries unchanged:
@@ -24,7 +24,7 @@ The package must load before `pi-subagents`. Keep all other package entries unch
 ```json
 {
   "packages": [
-    "git:github.com/Yivas/pi-subagent-models@v0.2.0",
+    "npm:pi-subagent-models@0.2.0",
     "npm:pi-subagents@0.40.0"
   ]
 }
