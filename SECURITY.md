@@ -4,7 +4,7 @@
 
 | Version | Supported |
 | --- | --- |
-| 0.1.x | Yes |
+| 0.2.x | Yes |
 | Earlier versions | No |
 
 Security fixes target the latest published version. Upgrade before reporting an issue that only affects an older release.

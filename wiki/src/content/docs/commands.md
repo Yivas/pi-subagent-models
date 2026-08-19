@@ -17,7 +17,7 @@ Choose `Default` to make the session inherit the global selection.
 
 ## TUI selector controls
 
-The unreleased `main` branch uses these controls in interactive TUI mode. npm `0.1.0` and non-TUI clients use Pi's native selection dialog.
+These controls apply in interactive TUI mode. Non-TUI clients use Pi's native selection dialog.
 
 | Input | Result |
 | --- | --- |

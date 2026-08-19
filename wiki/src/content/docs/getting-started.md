@@ -9,16 +9,12 @@ description: Install pi-subagent-models and verify that Pi loads it before pi-su
 | --- | --- |
 | Pi | `0.84.1` |
 | `pi-subagents` | `0.40.0` |
-| `pi-subagent-models` | `0.1.0` |
-
-:::note[Published and main-branch behavior]
-The npm `0.1.0` package uses Pi's native selectors. Fuzzy search and the ten-option TUI window are available on the unreleased `main` branch and will require a later published version.
-:::
+| `pi-subagent-models` | `0.2.0` |
 
 ## Install the package
 
 ```text
-pi install npm:pi-subagent-models@0.1.0
+pi install npm:pi-subagent-models@0.2.0
 ```
 
 The package must load before `pi-subagents`. Keep all other package entries unchanged:
@@ -26,7 +22,7 @@ The package must load before `pi-subagents`. Keep all other package entries unch
 ```json
 {
   "packages": [
-    "npm:pi-subagent-models@0.1.0",
+    "npm:pi-subagent-models@0.2.0",
     "npm:pi-subagents@0.40.0"
   ]
 }

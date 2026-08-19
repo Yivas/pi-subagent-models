@@ -1,6 +1,6 @@
 {
   "name": "pi-subagent-models",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Pi extension to set global or per-session models and thinking levels for subagents.",
   "type": "module",
   "exports": "./src/index.ts",

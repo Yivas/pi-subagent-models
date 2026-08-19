@@ -10,7 +10,7 @@ This is an open source, collaborative project under the MIT License. Bug reports
 - Source: [`Yivas/pi-subagent-models`](https://github.com/Yivas/pi-subagent-models)
 - Documentation: [`yivas.github.io/pi-subagent-models`](https://yivas.github.io/pi-subagent-models/)
 
-Current release: `0.1.0`.
+Current release: `0.2.0`.
 
 ## Requirements
 
@@ -23,7 +23,7 @@ Current release: `0.1.0`.
 Install the pinned npm release:
 
 ```text
-pi install npm:pi-subagent-models@0.1.0
+pi install npm:pi-subagent-models@0.2.0
 ```
 
 Then make sure this package appears before `pi-subagents` in `~/.pi/agent/settings.json`:
@@ -31,7 +31,7 @@ Then make sure this package appears before `pi-subagents` in `~/.pi/agent/settin
 ```json
 {
   "packages": [
-    "npm:pi-subagent-models@0.1.0",
+    "npm:pi-subagent-models@0.2.0",
     "npm:pi-subagents@0.40.0"
   ]
 }
@@ -44,7 +44,7 @@ The order matters because this extension patches delegation requests before `pi-
 You can also install the matching Git tag:
 
 ```text
-pi install git:github.com/Yivas/pi-subagent-models@v0.1.0
+pi install git:github.com/Yivas/pi-subagent-models@v0.2.0
 ```
 
 ## Usage
@@ -61,7 +61,7 @@ Override only the current session:
 /subagents-model-session
 ```
 
-Both commands show `Default` first, followed by the models available in the current Pi registry. On the unreleased `main` branch, each TUI selector supports fuzzy search and shows at most ten options; npm `0.1.0` still uses Pi's native selector. Selecting a model opens a second selector for its thinking level.
+Both commands show `Default` first, followed by the models available in the current Pi registry. Each TUI selector supports fuzzy search and shows at most ten options. Non-TUI clients continue to use Pi's native selection dialog. Selecting a model opens a second selector for its thinking level.
 
 Global `Default` restores normal `pi-subagents` model resolution. Session `Default` inherits the global selection.
 
