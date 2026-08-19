@@ -3,6 +3,7 @@ import { mkdtemp, readFile, rm } from "node:fs/promises"
 import { tmpdir } from "node:os"
 import { join } from "node:path"
 import test from "node:test"
+import { initTheme } from "@earendil-works/pi-coding-agent"
 import {
   default as piSubagentModels,
   modelArgument,
@@ -10,7 +11,9 @@ import {
   patchRpcRequest,
   patchSubagentParams,
   resolveModelState,
+  selectOption,
 } from "./src/index.ts"
+import { SearchableSelector } from "./src/selector.ts"
 import {
   SESSION_STATE_ENTRY,
   createModelState,
@@ -20,6 +23,8 @@ import {
   saveGlobalState,
   type ModelState,
 } from "./src/state.ts"
+
+initTheme("dark", false)
 
 const forced: ModelState = {
   mode: "forced",
@@ -55,6 +60,80 @@ test("restores the latest session marker and falls back to global", () => {
   ])
   assert.deepEqual(session, { mode: "default" })
   assert.deepEqual(resolveModelState(session, forced), forced)
+})
+
+test("keeps the native selector outside TUI mode", async () => {
+  const calls: unknown[][] = []
+  const ctx = {
+    mode: "rpc",
+    ui: {
+      select: async (title: string, options: string[]) => {
+        calls.push([title, options])
+        return options[1]
+      },
+    },
+  }
+
+  assert.equal(await selectOption(ctx as never, "Choose model", ["Default", "provider/model"]), "provider/model")
+  assert.deepEqual(calls, [["Choose model", ["Default", "provider/model"]]])
+})
+
+test("runs the searchable TUI selector with a bounded result window", () => {
+  const completed: Array<string | undefined> = []
+  let renders = 0
+  const options = ["Default", ...Array.from({ length: 15 }, (_, index) => `provider/model-${index + 1}`)]
+  const tui = { requestRender: () => renders++ }
+  const theme = {
+    fg: (_color: string, text: string) => text,
+    bold: (text: string) => text,
+  }
+  const keys: Record<string, string> = {
+    "tui.select.up": "UP",
+    "tui.select.down": "DOWN",
+    "tui.select.confirm": "ENTER",
+    "tui.select.cancel": "ESCAPE",
+  }
+  const keybindings = { matches: (data: string, action: string) => keys[action] === data }
+  const selector = new SearchableSelector(
+    tui as never,
+    theme as never,
+    keybindings as never,
+    options,
+    "Choose model",
+    (result) => completed.push(result),
+  )
+
+  const initial = selector.render(100).join("\n")
+  assert.match(initial, /→ Default/)
+  assert.match(initial, /provider\/model-9/)
+  assert.doesNotMatch(initial, /provider\/model-10/)
+  assert.match(initial, /\(1\/16\)/)
+
+  for (const character of "model-15") selector.handleInput(character)
+  const filtered = selector.render(100).join("\n")
+  assert.match(filtered, /→ provider\/model-15/)
+  assert.doesNotMatch(filtered, /provider\/model-14/)
+
+  selector.handleInput("ENTER")
+  assert.deepEqual(completed, ["provider/model-15"])
+  assert.ok(renders >= "model-15".length)
+})
+
+test("keeps the searchable selector open when no option matches", () => {
+  const completed: Array<string | undefined> = []
+  const selector = new SearchableSelector(
+    { requestRender: () => {} } as never,
+    { fg: (_color: string, text: string) => text, bold: (text: string) => text } as never,
+    { matches: (data: string, action: string) => action === "tui.select.confirm" && data === "ENTER" } as never,
+    ["Default", "provider/model"],
+    "Choose model",
+    (result) => completed.push(result),
+  )
+
+  for (const character of "missing") selector.handleInput(character)
+  assert.match(selector.render(100).join("\n"), /No matching entries/)
+  selector.handleInput("ENTER")
+  assert.deepEqual(completed, [])
 })
 
 test("patches single, parallel, and chain launches", () => {

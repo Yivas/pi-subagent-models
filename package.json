@@ -10,7 +10,7 @@
     "LICENSE"
   ],
   "scripts": {
-    "check": "node --experimental-strip-types --check src/index.ts && node --experimental-strip-types --check src/state.ts",
+    "check": "node --experimental-strip-types --check src/index.ts && node --experimental-strip-types --check src/selector.ts && node --experimental-strip-types --check src/state.ts",
     "test": "npm run check && node --experimental-strip-types --test test.ts"
   },
   "keywords": [
@@ -34,12 +34,20 @@
   "publishConfig": {
     "access": "public"
   },
+  "devDependencies": {
+    "@earendil-works/pi-coding-agent": "0.84.1",
+    "@earendil-works/pi-tui": "0.84.1"
+  },
   "peerDependencies": {
     "@earendil-works/pi-coding-agent": "0.84.1",
+    "@earendil-works/pi-tui": "0.84.1",
     "pi-subagents": "0.40.0"
   },
   "peerDependenciesMeta": {
     "@earendil-works/pi-coding-agent": {
+      "optional": true
+    },
+    "@earendil-works/pi-tui": {
       "optional": true
     },
     "pi-subagents": {

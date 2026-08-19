@@ -129,6 +129,15 @@ function supportedThinkingLevels(model: ModelLike): ThinkingLevel[] {
   })
 }
 
+export async function selectOption(
+  ctx: ExtensionCommandContext,
+  title: string,
+  options: string[],
+): Promise<string | undefined> {
+  if (ctx.mode !== "tui") return ctx.ui.select(title, options)
+  return (await import("./selector.ts")).selectOption(ctx, title, options)
+}
+
 async function chooseState(ctx: ExtensionCommandContext, title: string): Promise<ModelState | undefined> {
   if (!ctx.hasUI) {
     ctx.ui.notify("This command requires the interactive Pi UI.", "error")
@@ -142,7 +151,7 @@ async function chooseState(ctx: ExtensionCommandContext, title: string): Promise
   }
 
   const choices = [DEFAULT_CHOICE, ...models.map((model) => `${model.provider}/${model.id}`)]
-  const selectedModel = await ctx.ui.select(title, choices)
+  const selectedModel = await selectOption(ctx, title, choices)
   if (!selectedModel) return undefined
   if (selectedModel === DEFAULT_CHOICE) return { mode: "default" }
 
@@ -158,7 +167,7 @@ async function chooseState(ctx: ExtensionCommandContext, title: string): Promise
   const thinkingChoices = scopedThinking
     ? [DEFAULT_CHOICE, scopedThinking]
     : [DEFAULT_CHOICE, ...supportedThinkingLevels(model)]
-  const selectedThinking = await ctx.ui.select("Subagent thinking level", thinkingChoices)
+  const selectedThinking = await selectOption(ctx, "Subagent thinking level", thinkingChoices)
   if (!selectedThinking) return undefined
   return createModelState(selectedModel, selectedThinking === DEFAULT_CHOICE ? undefined : selectedThinking)
 }
