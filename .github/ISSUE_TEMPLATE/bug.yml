@@ -1,0 +1,66 @@
+name: Bug report
+description: Report reproducible behavior that differs from the documented contract.
+title: "[Bug]: "
+labels:
+  - bug
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Remove credentials, prompts, sessions, logs with private data, and real model selections before submitting.
+  - type: input
+    id: package-version
+    attributes:
+      label: Package version
+      placeholder: 0.1.0
+    validations:
+      required: true
+  - type: input
+    id: pi-version
+    attributes:
+      label: Pi version
+      placeholder: 0.84.1
+    validations:
+      required: true
+  - type: input
+    id: subagents-version
+    attributes:
+      label: pi-subagents version
+      placeholder: 0.40.0
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Reproduction
+      description: Give the shortest sequence that reproduces the problem using fictional values.
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual behavior
+    validations:
+      required: true
+  - type: textarea
+    id: context
+    attributes:
+      label: Redacted context
+      description: Add relevant errors or configuration structure after removing private data.
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Checks
+      options:
+        - label: I searched for an existing issue.
+          required: true
+        - label: I removed secrets and private data.
+          required: true
+        - label: This is not a security vulnerability.
+          required: true

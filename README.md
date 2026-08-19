@@ -2,10 +2,13 @@
 
 Set one model and thinking level for every `pi-subagents` child, globally or for one Pi session. The parent session keeps its current model.
 
+This is an open source, collaborative project under the MIT License. Bug reports and focused pull requests are welcome.
+
 ## Package
 
 - npm: [`pi-subagent-models`](https://www.npmjs.com/package/pi-subagent-models)
 - Source: [`Yivas/pi-subagent-models`](https://github.com/Yivas/pi-subagent-models)
+- Documentation: [`yivas.github.io/pi-subagent-models`](https://yivas.github.io/pi-subagent-models/)
 
 Current release: `0.1.0`.
 
@@ -58,7 +61,7 @@ Override only the current session:
 /subagents-model-session
 ```
 
-Both commands show `Default` first, followed by the models available in the current Pi registry. Selecting a model opens a second selector for its thinking level.
+Both commands show `Default` first, followed by the models available in the current Pi registry. On the unreleased `main` branch, each TUI selector supports fuzzy search and shows at most ten options; npm `0.1.0` still uses Pi's native selector. Selecting a model opens a second selector for its thinking level.
 
 Global `Default` restores normal `pi-subagents` model resolution. Session `Default` inherits the global selection.
 
@@ -107,7 +110,20 @@ npm test
 npm pack --dry-run
 ```
 
+Build the documentation site separately:
+
+```text
+npm ci --prefix wiki
+npm run build --prefix wiki
+```
+
 The integration depends on the `pi-subagents` `0.40.0` event contracts. Run the tests and verify each launch path before updating `pi-subagents`.
+
+## Support and contributions
+
+Use [GitHub Issues](https://github.com/Yivas/pi-subagent-models/issues) for reproducible bugs and focused feature requests. Read [CONTRIBUTING.md](CONTRIBUTING.md) before opening a pull request.
+
+Report suspected vulnerabilities through [GitHub private vulnerability reporting](https://github.com/Yivas/pi-subagent-models/security/advisories/new), not a public issue. See [SECURITY.md](SECURITY.md) for supported versions and reporting guidance.
 
 ## License
 

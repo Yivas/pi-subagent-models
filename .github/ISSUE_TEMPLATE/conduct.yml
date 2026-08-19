@@ -1,0 +1,38 @@
+name: Conduct report
+description: Request moderation for behavior that can be described safely in public.
+title: "[Conduct]: "
+labels:
+  - question
+body:
+  - type: markdown
+    attributes:
+      value: |
+        This form creates a public issue. Use private reporting for confidential evidence, personal details, threats, or security concerns.
+  - type: input
+    id: location
+    attributes:
+      label: Repository location
+      description: Link the issue, pull request, comment, or other public project location.
+    validations:
+      required: true
+  - type: textarea
+    id: concern
+    attributes:
+      label: Moderation concern
+      description: Describe the conduct and its effect using only information safe to publish.
+    validations:
+      required: true
+  - type: textarea
+    id: action
+    attributes:
+      label: Requested action
+      description: Explain what moderation outcome would address the concern.
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Checks
+      options:
+        - label: This report contains no private or sensitive information.
+          required: true
+        - label: I will use private reporting if confidential details are needed.
+          required: true

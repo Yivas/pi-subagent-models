@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" role="img" aria-labelledby="title">
+  <title id="title">pi-subagent-models</title>
+  <style>
+    .background { fill: var(--icon-background, #172554); }
+    .line { stroke: var(--icon-foreground, #f8fafc); }
+    .node { fill: var(--icon-accent, #67e8f9); }
+  </style>
+  <rect class="background" width="32" height="32" rx="8"/>
+  <path class="line" d="M16 9v6m0 0-7 6m7-6 7 6" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle class="node" cx="16" cy="8" r="3"/>
+  <circle class="node" cx="8" cy="23" r="3"/>
+  <circle class="node" cx="24" cy="23" r="3"/>
+</svg>

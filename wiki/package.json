@@ -1,0 +1,17 @@
+{
+  "name": "pi-subagent-models-wiki",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview"
+  },
+  "dependencies": {
+    "@astrojs/starlight": "0.41.7",
+    "astro": "7.2.3"
+  },
+  "engines": {
+    "node": ">=22.12.0"
+  }
+}

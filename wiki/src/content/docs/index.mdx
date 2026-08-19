@@ -1,0 +1,44 @@
+---
+title: pi-subagent-models
+description: Set one model and thinking level for every pi-subagents child without changing the parent session.
+template: splash
+hero:
+  tagline: One global choice, or one session override, for every child launched through pi-subagents.
+  actions:
+    - text: Get started
+      link: /pi-subagent-models/getting-started/
+      icon: right-arrow
+      variant: primary
+    - text: View on GitHub
+      link: https://github.com/Yivas/pi-subagent-models
+      icon: external
+---
+
+import { Card, CardGrid } from '@astrojs/starlight/components'
+
+:::caution[Main branch documentation]
+The searchable ten-row TUI selector is not included in npm `0.1.0`. It is documented here for the unreleased `main` branch.
+:::
+
+<CardGrid>
+  <Card title="Keep the parent unchanged" icon="star">
+    The extension rewrites child launch requests. It never switches the model used by the main Pi session.
+  </Card>
+  <Card title="Choose the scope" icon="puzzle">
+    Save one choice globally or override it for the active session branch.
+  </Card>
+  <Card title="Return to native behavior" icon="open-book">
+    Select `Default` to stop forcing a model and let Pi and `pi-subagents` resolve it normally.
+  </Card>
+  <Card title="Find models quickly" icon="rocket">
+    On the unreleased `main` branch, both TUI selectors support fuzzy search and keep long model catalogs inside a ten-row window.
+  </Card>
+</CardGrid>
+
+## What it covers
+
+The override applies to the `subagent` tool, slash-command launches, prompt-template delegation, and `pi-subagents` RPC spawn requests.
+
+:::note
+Scheduled runs keep the selection active when they are scheduled. Changing the selector later does not rewrite queued runs.
+:::

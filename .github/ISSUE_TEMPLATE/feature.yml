@@ -1,0 +1,41 @@
+name: Feature request
+description: Propose a focused change to the public plugin or documentation.
+title: "[Feature]: "
+labels:
+  - enhancement
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem
+      description: Describe the concrete limitation or workflow cost.
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed behavior
+      description: Explain what should change from a user's perspective.
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+      description: Include existing Pi or pi-subagents behavior that may already cover the need.
+  - type: textarea
+    id: compatibility
+    attributes:
+      label: Compatibility impact
+      description: Note effects on Default, persisted state, child launch paths, or supported versions.
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Checks
+      options:
+        - label: I searched for an existing issue.
+          required: true
+        - label: The proposal does not require changing the parent session model.
+          required: true
+        - label: I included no private data or real credentials.
+          required: true
