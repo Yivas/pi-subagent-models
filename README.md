@@ -20,10 +20,10 @@ Current release: `0.2.0`.
 
 ## Installation
 
-Install the pinned npm release:
+npm publication is pending registry 2FA. Until `0.2.0` appears on npm, install the verified Git tag:
 
 ```text
-pi install npm:pi-subagent-models@0.2.0
+pi install git:github.com/Yivas/pi-subagent-models@v0.2.0
 ```
 
 Then make sure this package appears before `pi-subagents` in `~/.pi/agent/settings.json`:
@@ -31,7 +31,7 @@ Then make sure this package appears before `pi-subagents` in `~/.pi/agent/settin
 ```json
 {
   "packages": [
-    "npm:pi-subagent-models@0.2.0",
+    "git:github.com/Yivas/pi-subagent-models@v0.2.0",
     "npm:pi-subagents@0.40.0"
   ]
 }
@@ -40,12 +40,6 @@ Then make sure this package appears before `pi-subagents` in `~/.pi/agent/settin
 Keep the remaining package entries unchanged. Restart Pi or run `/reload`.
 
 The order matters because this extension patches delegation requests before `pi-subagents` resolves them.
-
-You can also install the matching Git tag:
-
-```text
-pi install git:github.com/Yivas/pi-subagent-models@v0.2.0
-```
 
 ## Usage
 
